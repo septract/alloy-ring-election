@@ -43,6 +43,7 @@ pred step (t1, t2: Time) {
 } 
 
 pred send (n: Node, t1, t2: Time) { 
+    no t1.pnd[n.succ]
     t2.pnd = t1.pnd + (n.succ -> n.nid)
     t2.leader = t1.leader
 }
@@ -85,8 +86,8 @@ assert multileader {
         i in t.leader && j in t.leader => i = j
 } 
 
-//run show for 2 but 10 Time
+run show for 3 but 10 Time
 
 // run findleader for 3 but 20 Time
 
-check multileader for 5 but 80 Time 
+// check multileader for 5 but 80 Time 
